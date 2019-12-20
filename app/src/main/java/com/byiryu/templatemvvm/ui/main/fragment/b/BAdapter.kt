@@ -8,10 +8,22 @@ import com.bumptech.glide.RequestManager
 import com.bumptech.glide.request.RequestOptions
 import com.byiryu.templatemvvm.R
 import com.byiryu.templatemvvm.data.Contents
+import com.byiryu.templatemvvm.ui.base.BaseRecyclerAdapter
+import com.byiryu.templatemvvm.ui.base.Callback
 import pyxis.uzuki.live.nyancat.NyanCat
 
-class BAdapter constructor(private val viewModel : BViewModel, private var requestManager: RequestManager, private var requestOptions: RequestOptions)
-    :ListAdapter<Contents, BHolder>(Callback()){
+
+class BAdapter constructor(private  val viewModel : BViewModel, private var requestManager: RequestManager, private var requestOptions: RequestOptions)
+    : BaseRecyclerAdapter<Contents, BHolder>(object : Callback<Contents>(){
+    override fun areItemsTheSame(oldItem: Contents, newItem: Contents): Boolean {
+         return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(oldItem: Contents, newItem: Contents): Boolean {
+        return oldItem == newItem
+    }
+
+}) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BHolder {
         return BHolder(
             LayoutInflater.from(parent.context).inflate(
@@ -25,17 +37,4 @@ class BAdapter constructor(private val viewModel : BViewModel, private var reque
         NyanCat.e(item.toString())
         holder.onBind(viewModel, item )
     }
-
-}
-
-class Callback : DiffUtil.ItemCallback<Contents>(){
-    override fun areItemsTheSame(oldItem: Contents, newItem: Contents): Boolean {
-        return oldItem.id == newItem.id
-    }
-
-    override fun areContentsTheSame(oldItem: Contents, newItem: Contents): Boolean {
-        return oldItem == newItem
-    }
-
-
 }

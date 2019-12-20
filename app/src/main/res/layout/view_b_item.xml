@@ -4,7 +4,7 @@
 
     <data>
         <variable name="pos" type="Integer" />
-        <variable name="viewModel" type="com.byiryu.templatemvvm.ui.fragment.b.BViewModel"/>
+        <variable name="viewModel" type="com.byiryu.templatemvvm.ui.main.fragment.b.BViewModel"/>
 
     </data>
 
