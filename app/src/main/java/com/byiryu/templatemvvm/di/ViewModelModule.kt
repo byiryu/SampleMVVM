@@ -1,5 +1,6 @@
 package com.byiryu.templatemvvm.di
 
+import com.byiryu.templatemvvm.ui.coordi.CoordiViewModel
 import com.byiryu.templatemvvm.ui.main.MainViewModel
 
 import com.byiryu.templatemvvm.ui.main.fragment.a.AViewModel
@@ -18,4 +19,6 @@ var viewModelModule = module {
     viewModel { BViewModel(get(), get()) }
 
     viewModel { CViewModel() }
+
+    viewModel { CoordiViewModel() }
 }

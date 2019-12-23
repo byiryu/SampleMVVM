@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
->
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable name="viewModel" type="com.byiryu.templatemvvm.ui.coordi.CoordiViewModel" />
@@ -10,6 +10,62 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbarlayout"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            >
+
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="@color/black"
+
+                app:expandedTitleMarginEnd="64dp"
+                app:expandedTitleMarginStart="48dp"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+
+                >
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    app:layout_collapseMode="parallax"
+                    android:background="@drawable/cat"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+
+                <androidx.appcompat.widget.Toolbar
+                    app:layout_collapseMode="pin"
+                    android:id="@+id/toolbar"
+                    app:titleTextColor="@color/white"
+                    app:title="@string/app_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:navigationIcon="@drawable/baseline_supervised_user_circle_white_36"
+                    app:popupTheme="@style/SubAppTheme"
+                    >
+
+                </androidx.appcompat.widget.Toolbar>
+
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:Items="@{viewModel.items}"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

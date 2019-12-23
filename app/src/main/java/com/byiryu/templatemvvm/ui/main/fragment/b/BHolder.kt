@@ -17,8 +17,6 @@ class BHolder constructor(itemView : View, var requestManager: RequestManager, v
         binding.title.text = contents.title
         binding.desc.text = contents.desc
 
-
-
         requestManager.load(contents.url)
             .apply( requestOptions.transform(
                 CenterCrop(),

@@ -2,20 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/one"
+        android:id="@+id/drawer_coordi"
         android:icon="@drawable/baseline_ac_unit_black_18"
         android:title="Coordi + recyclerView"
         />
 
 
     <item
-        android:id="@+id/two"
+        android:id="@+id/drawer_two"
         android:icon="@drawable/baseline_all_inclusive_black_18"
         android:title="two"
         />
 
     <item
-        android:id="@+id/three"
+        android:id="@+id/drawer_three"
         android:icon="@drawable/baseline_fitness_center_black_18"
         android:title="three"
         />

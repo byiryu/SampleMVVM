@@ -9,9 +9,6 @@ buildscript {
         // glide
         glideVersion = '4.9.0'
 
-        // ButterKnife
-        butterKnifeVersion = '8.8.1'
-
         // kotlin
         kotlinVersion = '1.3.41'
 

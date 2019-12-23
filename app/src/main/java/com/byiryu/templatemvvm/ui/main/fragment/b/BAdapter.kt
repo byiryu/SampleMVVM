@@ -34,7 +34,6 @@ class BAdapter constructor(private  val viewModel : BViewModel, private var requ
 
     override fun onBindViewHolder(holder: BHolder, position: Int) {
         var item = getItem(position)
-        NyanCat.e(item.toString())
         holder.onBind(viewModel, item )
     }
 }

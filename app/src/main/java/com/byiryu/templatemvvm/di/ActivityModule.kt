@@ -2,6 +2,7 @@ package com.byiryu.templatemvvm.di
 
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.byiryu.templatemvvm.ui.coordi.CoordiAdapter
 import com.byiryu.templatemvvm.ui.main.MainAdapter
 import com.byiryu.templatemvvm.ui.main.fragment.b.BAdapter
 import org.koin.android.ext.koin.androidContext
@@ -23,5 +24,9 @@ var activityModule = module {
 
     factory {
         MainAdapter(get())
+    }
+
+    factory {
+        CoordiAdapter(get())
     }
 }

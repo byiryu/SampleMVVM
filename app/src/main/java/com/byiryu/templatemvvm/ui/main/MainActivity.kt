@@ -1,10 +1,15 @@
 package com.byiryu.templatemvvm.ui.main
 
+import android.content.Intent
+import android.view.MenuItem
 import androidx.core.view.GravityCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.byiryu.templatemvvm.R
 import com.byiryu.templatemvvm.databinding.ActivityMainBinding
 import com.byiryu.templatemvvm.ui.base.BaseActivity
+import com.byiryu.templatemvvm.ui.coordi.CoordiActivity
+import com.google.android.material.internal.NavigationMenuItemView
+import com.google.android.material.navigation.NavigationView
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
@@ -25,10 +30,14 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
+        setSupportActionBar(binding.toolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
+
         binding.bottomNav.setOnNavigationItemSelectedListener {item->
            when(item.itemId){
-               R.id.action_one -> binding.viewPager.currentItem = 0
-               R.id.action_two -> binding.viewPager.currentItem = 1
+               R.id.fragment_one -> binding.viewPager.currentItem = 0
+               R.id.fragment_two -> binding.viewPager.currentItem = 1
                else -> binding.viewPager.currentItem = 2
            }
             return@setOnNavigationItemSelectedListener true
@@ -40,17 +49,20 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
             }
         })
 
-        binding.btnDrawer.setOnClickListener {
-            isOpen = if(isOpen) {
-                binding.drawerLayout.closeDrawer(GravityCompat.START)
-                true
-            }else {
-                binding.drawerLayout.openDrawer(GravityCompat.START)
-                false
+        binding.navigationView.setNavigationItemSelectedListener { item ->
+            var intent: Intent
+            when(item.itemId){
+                R.id.drawer_coordi -> {
+                    intent = Intent(this, CoordiActivity::class.java)
+                    startActivity(intent)
+                }
+                else -> {
+
+                }
             }
-
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+            false
         }
-
         setUpAdapter()
 
     }
@@ -64,11 +76,17 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         binding.viewPager.offscreenPageLimit = adapter.tabCount
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == android.R.id.home){
+            isOpen = if(isOpen) {
+                binding.drawerLayout.closeDrawer(GravityCompat.START)
+                true
+            }else {
+                binding.drawerLayout.openDrawer(GravityCompat.START)
+                false
+            }
+        }
 
-//    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-//
-//        binding.drawerLayout.closeDrawer(GravityCompat.START)
-//        return false
-//    }
-
+        return super.onOptionsItemSelected(item)
+    }
 }
