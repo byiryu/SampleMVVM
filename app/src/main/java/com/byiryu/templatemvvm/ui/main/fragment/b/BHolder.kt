@@ -24,6 +24,5 @@ class BHolder constructor(itemView : View, var requestManager: RequestManager, v
             ))
             .into(binding.imageURL)
 
-//        binding.executePendingBindings()
     }
 }

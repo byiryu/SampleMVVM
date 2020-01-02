@@ -4,16 +4,18 @@ import androidx.fragment.app.Fragment
 import com.byiryu.templatemvvm.R
 import com.byiryu.templatemvvm.databinding.FragmentCBinding
 import com.byiryu.templatemvvm.ui.base.BaseFragment
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class CFragment : BaseFragment<FragmentCBinding, CViewModel>(){
+class CFragment : BaseFragment<FragmentCBinding>(){
     override val layoutRes: Int
         get() = R.layout.fragment_c
-    override val viewModel: CViewModel by viewModel()
+//    val viewModel: CViewModel by viewModel()
 
 
     override fun init() {
-        binding.viewModel = viewModel
+        binding.viewModel = getViewModel()
+        binding.lifecycleOwner = this
 
     }
 

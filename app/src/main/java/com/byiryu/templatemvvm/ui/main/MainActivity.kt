@@ -10,14 +10,15 @@ import com.byiryu.templatemvvm.ui.base.BaseActivity
 import com.byiryu.templatemvvm.ui.coordi.CoordiActivity
 import com.google.android.material.internal.NavigationMenuItemView
 import com.google.android.material.navigation.NavigationView
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
+class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override val layoutRes: Int
         get() = R.layout.activity_main
 
-    override val viewModel: MainViewModel by viewModel()
+//    val viewModel: MainViewModel by viewModel()
 
     lateinit var adapter: MainAdapter
 
@@ -27,7 +28,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
     override fun init() {
 
-        binding.viewModel = viewModel
+        binding.viewModel = getViewModel()
         binding.lifecycleOwner = this
 
         setSupportActionBar(binding.toolbar)

@@ -18,7 +18,7 @@ var activityModule = module {
     }
 
     factory {
-        BAdapter(get(), get(), get() )
+        BAdapter(get(), get() )
     }
 
 
@@ -27,6 +27,6 @@ var activityModule = module {
     }
 
     factory {
-        CoordiAdapter(get())
+        CoordiAdapter()
     }
 }

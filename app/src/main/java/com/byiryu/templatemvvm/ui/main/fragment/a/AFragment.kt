@@ -5,18 +5,20 @@ import androidx.fragment.app.Fragment
 import com.byiryu.templatemvvm.R
 import com.byiryu.templatemvvm.databinding.FragmentABinding
 import com.byiryu.templatemvvm.ui.base.BaseFragment
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import pyxis.uzuki.live.nyancat.NyanCat
 
-class AFragment : BaseFragment<FragmentABinding, AViewModel>(){
+class AFragment : BaseFragment<FragmentABinding>(){
     override val layoutRes: Int
         get() = R.layout.fragment_a
-    override val viewModel: AViewModel by viewModel()
+//    val viewModel: AViewModel by viewModel()
 
 
     override fun init() {
-        binding.viewModel = viewModel
 
-
+        binding.viewModel = getViewModel()
+        binding.lifecycleOwner = this
 
     }
 

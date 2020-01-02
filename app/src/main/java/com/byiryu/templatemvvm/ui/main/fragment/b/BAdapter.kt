@@ -13,7 +13,7 @@ import com.byiryu.templatemvvm.ui.base.Callback
 import pyxis.uzuki.live.nyancat.NyanCat
 
 
-class BAdapter constructor(private  val viewModel : BViewModel, private var requestManager: RequestManager, private var requestOptions: RequestOptions)
+class BAdapter constructor(private var requestManager: RequestManager, private var requestOptions: RequestOptions)
     : BaseRecyclerAdapter<Contents, BHolder>(object : Callback<Contents>(){
     override fun areItemsTheSame(oldItem: Contents, newItem: Contents): Boolean {
          return oldItem.id == newItem.id
@@ -24,6 +24,7 @@ class BAdapter constructor(private  val viewModel : BViewModel, private var requ
     }
 
 }) {
+    private lateinit var viewModel : BViewModel
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BHolder {
         return BHolder(
             LayoutInflater.from(parent.context).inflate(
@@ -36,4 +37,9 @@ class BAdapter constructor(private  val viewModel : BViewModel, private var requ
         var item = getItem(position)
         holder.onBind(viewModel, item )
     }
+
+    fun setViewModel(viewModel : BViewModel){
+        this.viewModel = viewModel
+    }
+
 }

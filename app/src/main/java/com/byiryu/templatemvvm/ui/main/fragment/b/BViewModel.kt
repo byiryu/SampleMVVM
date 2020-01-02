@@ -23,8 +23,11 @@ class BViewModel constructor(private var context: Context, private var apiServic
     private val _dataLoading = MutableLiveData<Boolean>()
     val dataLoading : LiveData<Boolean> = _dataLoading
 
+    init {
+        loadData()
+    }
 
-    fun loadData(){
+    private fun loadData(){
         _dataLoading.value = true
 
         var call : Call<Res<Contents>> = apiService.getContents()

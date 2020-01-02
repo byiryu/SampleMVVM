@@ -8,13 +8,13 @@ import com.byiryu.templatemvvm.ui.base.BaseRecyclerAdapter
 import com.byiryu.templatemvvm.ui.base.Callback
 import pyxis.uzuki.live.nyancat.NyanCat
 
-class CoordiAdapter constructor(var viewModel : CoordiViewModel) :BaseRecyclerAdapter<CoodiItem, CoordiHolder>(object : Callback<CoodiItem>(){
+class CoordiAdapter :BaseRecyclerAdapter<CoodiItem, CoordiHolder>(object : Callback<CoodiItem>(){
     override fun areItemsTheSame(oldItem: CoodiItem, newItem: CoodiItem): Boolean {
         return oldItem.id == newItem.id
     }
 
-
 }) {
+    private lateinit var viewModel : CoordiViewModel
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoordiHolder {
         return CoordiHolder(
             LayoutInflater.from(parent.context).inflate(
@@ -27,5 +27,9 @@ class CoordiAdapter constructor(var viewModel : CoordiViewModel) :BaseRecyclerAd
         var item = getItem(position)
         NyanCat.e(item.toString())
         holder.onBind(viewModel, item)
+    }
+
+    fun setViewModel(viewModel : CoordiViewModel){
+        this.viewModel = viewModel
     }
 }

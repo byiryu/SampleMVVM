@@ -8,21 +8,19 @@ import com.byiryu.templatemvvm.R
 import com.byiryu.templatemvvm.databinding.FragmentBBinding
 import com.byiryu.templatemvvm.ui.base.BaseFragment
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import pyxis.uzuki.live.nyancat.NyanCat
 
-class BFragment : BaseFragment<FragmentBBinding, BViewModel>(){
+class BFragment : BaseFragment<FragmentBBinding>(){
     override val layoutRes: Int
         get() = R.layout.fragment_b
-    override val viewModel: BViewModel by viewModel()
 
     private val adapter : BAdapter by inject()
 
-
     override fun init() {
-        binding.viewModel = viewModel
+        binding.viewModel = getViewModel()
         binding.lifecycleOwner = this
-
-        viewModel.loadData()
 
         setAdapter()
     }
