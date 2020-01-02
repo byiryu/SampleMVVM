@@ -1,15 +1,17 @@
 package com.byiryu.templatemvvm.ui.base
 
 import android.os.Bundle
+import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 
-abstract class BaseActivity < T : ViewDataBinding, V : BaseViewModel> : AppCompatActivity(), BaseFragment.CallBack{
+abstract class BaseActivity < T : ViewDataBinding> : AppCompatActivity(), BaseFragment.CallBack{
 
     abstract val layoutRes : Int
+
     protected lateinit var binding : T
-    abstract val viewModel : V
+        private set
 
     abstract fun init()
 

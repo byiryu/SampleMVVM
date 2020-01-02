@@ -8,41 +8,30 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import pyxis.uzuki.live.nyancat.NyanCat
 
 
-abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel> : Fragment(){
+abstract class BaseFragment<T : ViewDataBinding> : Fragment(){
 
-    lateinit var binding : T
-    private var activity : BaseActivity<*,*>? = null
-
+    protected lateinit var binding : T
+        private set
     abstract val layoutRes : Int
-    abstract val viewModel : V
 
     abstract fun init()
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if(context is BaseActivity<*, *>) {
-            activity = context
-            activity?.onFragmentAttached()
-        }
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, layoutRes, container, false)
-        return binding.root
+        return DataBindingUtil.inflate<T>(inflater, layoutRes, container, false).apply {
+            binding = this
+        }.root
+
+//        binding = DataBindingUtil.inflate(inflater, layoutRes, container, false)
+//        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         init()
-    }
-
-
-    override fun onDetach() {
-        activity = null
-        super.onDetach()
     }
 
     interface CallBack {
